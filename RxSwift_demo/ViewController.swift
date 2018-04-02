@@ -81,6 +81,8 @@ class ViewController: UIViewController {
         viewModel_demo()
         
         viewModel_demo1()
+        
+        utilityOperators()
     }
     
     func viewModel_demo() {
@@ -187,14 +189,35 @@ class ViewController: UIViewController {
                 print("当前索引数：\(text)")
                 self?.label.text = text;
             }.disposed(by: disposeBag)
+
+
+        //创建一个初始值为111的Variable
+        let variable = Variable("111")
+        //修改value值
+        variable.value = "222"
+         
+        //第1次订阅
+        variable.asObservable().subscribe {
+            print("第1次订阅：", $0)
+        }.disposed(by: disposeBag)
+
+        variable.value = "3333"
+        
+    }
+    
+    func utilityOperators() {
+        Observable.of(1, 2, 3).delay(2, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { print($0) }).disposed(by: disposeBag)
+        
+        
+        Observable.of(1, 2, 3).delaySubscription(2, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { print($0) }).disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
