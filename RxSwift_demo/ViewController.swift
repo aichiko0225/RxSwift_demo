@@ -212,6 +212,30 @@ class ViewController: UIViewController {
         
         Observable.of(1, 2, 3).delaySubscription(2, scheduler: MainScheduler.instance)
             .subscribe(onNext: { print($0) }).disposed(by: disposeBag)
+        
+        
+        // timeout
+        // 使用该操作符可以设置一个超时时间。如果源 Observable 在规定时间内没有发任何出元素，就产生一个超时的 error 事件。
+        
+        //定义好每个事件里的值以及发送的时间
+        let times = [
+            [ "value": 1, "time": 0 ],
+            [ "value": 2, "time": 0.5 ],
+            [ "value": 3, "time": 1.5 ],
+            [ "value": 4, "time": 4 ],
+            [ "value": 5, "time": 5 ]
+        ]
+        
+        Observable.from(times).flatMap { (item) in
+            return Observable.of(Int(item["value"]!)).delaySubscription(Double(item["time"]!),scheduler: MainScheduler.instance)
+            }
+            .timeout(2, scheduler: MainScheduler.instance) //超过两秒没发出元素，则产生error事件
+            .subscribe(onNext: { element in
+                print(element)
+            }, onError: { error in
+                print(error)
+            })
+            .disposed(by: disposeBag)
     }
 
     override func didReceiveMemoryWarning() {
