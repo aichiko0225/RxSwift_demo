@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,11 +39,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="nSe-Fk-g3J">
-                        <barButtonItem key="rightBarButtonItem" title="Traits" id="mQY-Fj-7vl">
-                            <connections>
-                                <segue destination="PV8-vJ-F14" kind="show" id="9Fu-gg-CcE"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Traits" id="mQY-Fj-7vl">
+                                <connections>
+                                    <segue destination="PV8-vJ-F14" kind="show" id="9Fu-gg-CcE"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Element" id="dJc-65-qqP">
+                                <connections>
+                                    <segue destination="ZEU-1m-qjP" kind="show" id="yUO-6I-25K"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="D6B-DT-Yx9" id="MFy-We-mB5"/>
@@ -50,6 +59,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="444" y="277.51124437781112"/>
+        </scene>
+        <!--Element-->
+        <scene sceneID="8Gz-k4-P02">
+            <objects>
+                <viewController title="Element" id="ZEU-1m-qjP" customClass="ElementViewController" customModule="RxSwift_demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="amL-iP-SfJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S34-Wf-FYB">
+                                <rect key="frame" x="38" y="97" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oei-HN-CtF">
+                                <rect key="frame" x="36" y="167" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="button">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELP-u9-3oJ">
+                                <rect key="frame" x="68" y="244" width="52" height="30"/>
+                                <state key="normal" title="Button1"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbn-mT-izr">
+                                <rect key="frame" x="159.5" y="244" width="55" height="30"/>
+                                <state key="normal" title="Button2"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kFC-hK-h0b">
+                                <rect key="frame" x="254" y="244" width="55" height="30"/>
+                                <state key="normal" title="Button3"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="wbn-mT-izr" firstAttribute="top" secondItem="dDe-sm-IlQ" secondAttribute="top" constant="180" id="Zc9-Jl-m4v"/>
+                            <constraint firstItem="ELP-u9-3oJ" firstAttribute="centerX" secondItem="dDe-sm-IlQ" secondAttribute="centerX" multiplier="0.5" id="nHX-AX-SGZ"/>
+                            <constraint firstItem="wbn-mT-izr" firstAttribute="centerX" secondItem="dDe-sm-IlQ" secondAttribute="centerX" id="rDz-0F-teL"/>
+                            <constraint firstItem="ELP-u9-3oJ" firstAttribute="centerY" secondItem="wbn-mT-izr" secondAttribute="centerY" id="s7y-Pv-Wpm"/>
+                            <constraint firstItem="kFC-hK-h0b" firstAttribute="centerX" secondItem="dDe-sm-IlQ" secondAttribute="centerX" multiplier="1.5" id="u9g-3x-cPg"/>
+                            <constraint firstItem="kFC-hK-h0b" firstAttribute="centerY" secondItem="wbn-mT-izr" secondAttribute="centerY" id="wFu-eu-deH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dDe-sm-IlQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="button" destination="oei-HN-CtF" id="6AB-sV-lmI"/>
+                        <outlet property="button1" destination="ELP-u9-3oJ" id="Goa-5r-7h6"/>
+                        <outlet property="button2" destination="wbn-mT-izr" id="adm-A7-XX5"/>
+                        <outlet property="button3" destination="kFC-hK-h0b" id="OCH-vf-jlg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z9F-2c-Pxp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1277.5999999999999" y="1065.5172413793105"/>
         </scene>
         <!--Traits-->
         <scene sceneID="L8I-Sz-jWh">
