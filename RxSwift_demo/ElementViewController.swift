@@ -10,6 +10,16 @@ import UIKit
 import RxCocoa
 import RxSwift
 
+struct UserViewModel {
+    let username = Variable("guest")
+    
+    lazy var userInfo = {
+        return self.username.asObservable().map({ (username) in
+            return username == "ash" ? "您是管理员" : "您是普通访客"
+        }).share(replay: 1)
+    }()
+}
+
 /// UI 组件的demo
 class ElementViewController: UIViewController {
 
@@ -20,6 +30,12 @@ class ElementViewController: UIViewController {
     @IBOutlet weak var button2: UIButton!
     
     @IBOutlet weak var button3: UIButton!
+    
+    @IBOutlet weak var textField: UITextField!
+    
+    @IBOutlet weak var infoLabel: UILabel!
+    
+    var userVM = UserViewModel()
     
     let disposeBag = DisposeBag()
     
@@ -45,7 +61,15 @@ class ElementViewController: UIViewController {
             selectedButton.map({$0 == button}).bind(to: button.rx.isSelected).disposed(by: disposeBag)
         }
         
+        //简单的双向绑定
+        userVM.username.asObservable().bind(to: textField.rx.text).disposed(by: disposeBag)
+        textField.rx.text.orEmpty.bind(to: userVM.username).disposed(by: disposeBag)
         
+        //将用户信息绑定到label上
+        userVM.userInfo.bind(to: infoLabel.rx.text).disposed(by: disposeBag)
+        
+        
+        //自定义双向绑定操作符（operator）
         
     }
     
