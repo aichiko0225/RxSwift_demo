@@ -7,8 +7,9 @@
 //
 
 import UIKit
-import RxCocoa
-import RxSwift
+import RxSwift_demo
+//import RxCocoa
+//import RxSwift
 
 class TraitsViewController: UIViewController {
     
